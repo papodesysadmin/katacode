@@ -1,0 +1,69 @@
+swagger: "2.0"
+info:
+  description: "Primeiro code kata community!"
+  version: "1.0.0"
+  title: "Primos"
+host: "localhost"
+basePath: "/v0"
+tags:
+- name: "Primos"
+  description: "Primeiro desafio com números primos"
+schemes:
+- "https"
+- "http"
+paths:
+  /primos:
+    get:
+      tags:
+      - "primos"
+      summary: "calcula os n primeiros numeros primos, on n é representado pelo param quantidadePrimos"
+      description: "Exemplo de retorno quando quantidadePrimos=5  -> {2,3,5,7,9}"
+
+      parameters:
+      - in: "query"
+        name: "quantidadePrimos"
+        description: "Quantidade que indica o n-esimo numero desejado."
+        required: true
+        type: number
+      responses:
+        "200":
+          description: "Retorno com sucesso"
+          schema:
+            type: "array"
+            items:
+              type: number
+
+  /primos/{numero}:
+    get:
+      tags:
+      - "primos"
+      summary: "Valida se o número informado é primo"
+      parameters:
+      - in: "path"
+        name: "numero"
+        description: "Número a ser testado"
+        required: true
+        type: number
+      responses:
+        "200":
+          description: "Retorno com sucesso"
+          schema:
+            $ref: '#/definitions/retornoPrimo200'
+            
+
+  
+
+
+definitions:
+  retornoPrimo200:
+    type: "object"
+    properties:
+      ehprimo:
+        type: "string"
+        enum:
+          - "sim"
+          - "nao"
+   
+
+
+
